@@ -1,74 +1,70 @@
 package com.gcu.workspacecst339;
 
-import java.util.ArrayList;
-import java.util.List;
-
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.gcu.workspacecst339.model.LoginForm;
 import com.gcu.workspacecst339.model.User;
 import com.gcu.workspacecst339.service.UserService;
 
 import jakarta.servlet.http.HttpSession;
+import jakarta.validation.Valid;
 
-// Controller for handling login and logout
 @Controller
 public class LoginController {
-    // Service for user lookup and authentication
+
     private final UserService userService;
 
-    // Inject the user service
-    public LoginController(UserService userService){ this.userService=userService; }
+    public LoginController(UserService userService) {
+        this.userService = userService;
+    }
 
     // Show the login page with an empty form
     @GetMapping("/login")
-    public String show(Model model){
+    public String show(Model model) {
         model.addAttribute("pageTitle", "Login - CLC App");
-        model.addAttribute("login", new LoginForm());
+        // IMPORTANT: name it "form" to match th:object="${form}" in login.html
+        model.addAttribute("form", new LoginForm());
         return "login";
     }
 
-    // Process the submitted login form
+    // Process the submitted login form using Bean Validation + BindingResult
     @PostMapping("/login")
-    public String submit(@ModelAttribute("login") LoginForm form, Model model, HttpSession session){
-        // Collect simple validation errors
-        List<String> errors = new ArrayList<>();
+    public String submit(@Valid @ModelAttribute("form") LoginForm form,
+                         BindingResult result,
+                         Model model,
+                         HttpSession session,
+                         RedirectAttributes ra) {
 
-        // Ensure username is provided
-        if(form.getUsername()==null || form.getUsername().isBlank()) errors.add("Username is required");
-
-        // Ensure password is provided
-        if(form.getPassword()==null || form.getPassword().isBlank()) errors.add("Password is required");
-
-        // If there are errors then re render the login page with messages
-        if(!errors.isEmpty()){
+        // If field validation failed, re-render the page with field errors
+        if (result.hasErrors()) {
             model.addAttribute("pageTitle", "Login - CLC App");
-            model.addAttribute("errors", errors);
             return "login";
         }
 
-        // Check credentials with the service
+        // Authenticate using your service
         User u = userService.authenticate(form.getUsername(), form.getPassword());
 
-        // If credentials are invalid then show the login page again
-        if(u==null){
+        if (u == null) {
+            result.reject("login.failed", "Invalid username or password.");
             model.addAttribute("pageTitle", "Login - CLC App");
-            model.addAttribute("errors", List.of("Invalid username or password"));
             return "login";
         }
 
-        // Store the user in the session and go to products
+        // Success: store user in session and redirect with a success alert
         session.setAttribute("user", u);
-        return "redirect:/products";
+        ra.addAttribute("success", "Welcome, " + form.getUsername() + "!");
+        return "redirect:/";
     }
 
     // Clear the session and return to the home page
     @GetMapping("/logout")
-    public String logout(HttpSession session){
+    public String logout(HttpSession session) {
         session.invalidate();
         return "redirect:/";
     }

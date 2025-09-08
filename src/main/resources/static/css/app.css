@@ -1,0 +1,5 @@
+body { background: #f7f7fb; }
+.card { border: 0; border-radius: 1rem; }
+.card .card-body { padding: 1.25rem 1.5rem; }
+.navbar-brand { font-weight: 600; }
+.form-label { font-weight: 500; }
