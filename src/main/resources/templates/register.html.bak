@@ -1,33 +1,23 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
-<head>
-  <meta charset="UTF-8"/>
-  <title>Register</title>
-  <th:block th:replace="~{fragments/head :: head}"></th:block>
-</head>
+<head><meta charset="UTF-8"/><title>Register</title></head>
 <body>
-  <th:block th:replace="~{fragments/navbar :: navbar}"></th:block>
-
-  <main class="container py-4">
-    <th:block th:replace="~{fragments/alerts :: alerts}"></th:block>
-
-    <h1 class="mb-3">Register</h1>
-
-    <div class="card p-3">
-      <div th:if="${registerError}" class="error mb-2" th:text="${registerError}"></div>
-      <form class="stack gap-2" th:action="@{/register}" method="post" th:object="${registrationForm}">
+  <div th:replace="~{layout :: header}"></div>
+  <main>
+    <h1>Register</h1>
+    <div class="card">
+      <div th:if="${registerError}" class="error" th:text="${registerError}"></div>
+      <form class="stack" th:action="@{/register}" method="post" th:object="${registrationForm}">
         <div class="row"><label for="username">Username</label><input id="username" th:field="*{username}" /></div>
         <div class="row"><label for="password">Password</label><input id="password" type="password" th:field="*{password}" /></div>
         <div class="row"><label for="confirmPassword">Confirm Password</label><input id="confirmPassword" type="password" th:field="*{confirmPassword}" /></div>
         <div class="row"><label for="firstName">First name</label><input id="firstName" th:field="*{firstName}" /></div>
         <div class="row"><label for="lastName">Last name</label><input id="lastName" th:field="*{lastName}" /></div>
         <div class="row"><label for="email">Email</label><input id="email" type="email" th:field="*{email}" /></div>
-        <div class="mt-2">
-          <button class="btn btn-primary" type="submit">Create account</button>
-          <a class="btn btn-ghost" th:href="@{/login}">Back to login</a>
-        </div>
+        <div><button type="submit">Create account</button> <a th:href="@{/login}">Back to login</a></div>
       </form>
     </div>
   </main>
+  <div th:replace="~{layout :: footer}"></div>
 </body>
 </html>

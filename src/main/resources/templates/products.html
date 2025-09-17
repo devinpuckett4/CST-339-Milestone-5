@@ -1,113 +1,30 @@
-<!doctype html>
-<html lang="en" xmlns:th="http://www.thymeleaf.org">
-  <head th:replace="fragments/head :: head"></head>
-  <body>
-    <header th:replace="fragments/navbar :: navbar"></header>
-
-    <main class="container py-4">
-      <section th:replace="fragments/alerts :: alerts"></section>
-
-      <div class="card shadow-sm mb-4">
-        <div class="card-body">
-          <h1 class="h4 mb-1">Create Product</h1>
-          <p class="text-muted mb-3">
-            Welcome,
-            <span th:text="${session.user != null ? session.user.firstName : 'Guest'}">Guest</span>.
-          </p>
-
-          <form th:action="@{/products/create}" th:object="${form}" method="post" novalidate>
-            <div class="mb-3">
-              <label class="form-label">Name</label>
-              <input class="form-control" th:field="*{name}">
-              <div class="text-danger small" th:errors="*{name}"></div>
-            </div>
-
-            <div class="mb-3">
-              <label class="form-label">SKU</label>
-              <input class="form-control" th:field="*{sku}">
-              <div class="text-danger small" th:errors="*{sku}"></div>
-            </div>
-
-            <div class="mb-3">
-              <label class="form-label">Price</label>
-              <input class="form-control" th:field="*{price}" type="number" step="0.01">
-              <div class="text-danger small" th:errors="*{price}"></div>
-            </div>
-
-            <div class="mb-3">
-              <label class="form-label">Description</label>
-              <textarea class="form-control" th:field="*{description}" rows="3"></textarea>
-              <div class="text-danger small" th:errors="*{description}"></div>
-            </div>
-
-            <div class="mb-3">
-              <label class="form-label">Category</label>
-              <input class="form-control" th:field="*{category}">
-              <div class="text-danger small" th:errors="*{category}"></div>
-            </div>
-
-            <div class="form-check mb-3">
-              <input class="form-check-input" type="checkbox" th:field="*{active}" id="active">
-              <label class="form-check-label" for="active">Active</label>
-            </div>
-
-            <div class="text-danger mt-2"
-                 th:if="${#fields.hasGlobalErrors()}"
-                 th:each="e : ${#fields.globalErrors()}"
-                 th:text="${e}"></div>
-
-            <button class="btn btn-primary">Create</button>
-          </form>
-        </div>
-      </div>
-
-      <!-- Product list -->
-      <div class="card shadow-sm">
-        <div class="card-body">
-          <h2 class="h5 mb-3">Products</h2>
-
-          <div th:if="${products == null || #lists.isEmpty(products)}" class="text-muted">
-            No products yet. Create one above.
-          </div>
-
-          <div th:if="${products != null && !#lists.isEmpty(products)}">
-            <div class="table-responsive">
-              <table class="table table-sm align-middle">
-                <thead>
-                  <tr>
-                    <th scope="col">Name</th>
-                    <th scope="col">SKU</th>
-                    <th scope="col" class="text-end">Price</th>
-                    <th scope="col">Category</th>
-                    <th scope="col">Active</th>
-                    <th scope="col" class="text-end">Actions</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  <tr th:each="p : ${products}">
-                    <td th:text="${p.name}">Name</td>
-                    <td th:text="${p.sku}">SKU</td>
-                    <td class="text-end" th:text="${'$' + #numbers.formatDecimal(p.price, 1, 'COMMA', 2, 'POINT')}">0.00</td>
-                    <td th:text="${p.category}">Category</td>
-                    <td>
-                      <span class="badge bg-success" th:if="${p.active}">Yes</span>
-                      <span class="badge bg-secondary" th:if="${!p.active}">No</span>
-                    </td>
-                    <td class="text-end">
-                      <form th:action="@{/products/delete/{id}(id=${p.id})}" method="post" class="d-inline">
-                        <button class="btn btn-sm btn-outline-danger">Delete</button>
-                      </form>
-                    </td>
-                  </tr>
-                </tbody>
-              </table>
-            </div>
-          </div>
-
-        </div>
-      </div>
-    </main>
-
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
-  </body>
+<!DOCTYPE html>
+<html lang='en' xmlns:th='http://www.thymeleaf.org'>
+<head><meta charset='UTF-8'/><title>Products</title></head>
+<body>
+  <div th:replace='layout :: header'></div>
+  <main>
+    <h1>Products</h1>
+    <p><a class='btn btn-primary' th:href='@{/products/create}'>Create Product</a></p>
+    <div class='card'>
+      <table class='table'>
+        <thead><tr><th>Name</th><th>Description</th><th>Price</th><th>Created</th><th></th></tr></thead>
+        <tbody>
+          <tr th:each='p : \'>
+            <td th:text='\'>name</td>
+            <td th:text='\'>desc</td>
+            <td th:text='\'>0.00</td>
+            <td th:text='\'>-</td>
+            <td>
+              <form th:action='@{|/products/\/delete|}' method='post'>
+                <button class='btn btn-danger' type='submit'>Delete</button>
+              </form>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </main>
+  <div th:replace='layout :: footer'></div>
+</body>
 </html>

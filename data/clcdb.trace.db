@@ -1,0 +1,27 @@
+2025-09-17 12:50:40.895745-04:00 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Table "users" not found (candidates are: "USERS"); SQL statement:
+SELECT "users"."ID" AS "ID", "users"."EMAIL" AS "EMAIL", "users"."USERNAME" AS "USERNAME", "users"."last_name" AS "last_name", "users"."PASSWORD" AS "PASSWORD", "users"."first_name" AS "first_name" FROM "users" WHERE "users"."USERNAME" = ? [42103-232]
+2025-09-17 12:54:03.998415-04:00 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Table "users" not found (candidates are: "USERS"); SQL statement:
+SELECT "users"."ID" AS "ID", "users"."EMAIL" AS "EMAIL", "users"."USERNAME" AS "USERNAME", "users"."last_name" AS "last_name", "users"."PASSWORD" AS "PASSWORD", "users"."first_name" AS "first_name" FROM "users" WHERE "users"."USERNAME" = ? [42103-232]
+2025-09-17 12:56:06.632257-04:00 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Table "users" not found (candidates are: "USERS"); SQL statement:
+SELECT "users"."ID" FROM "users" WHERE "users"."USERNAME" = ? LIMIT 1 [42103-232]
+2025-09-17 12:56:16.032536-04:00 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Table "users" not found (candidates are: "USERS"); SQL statement:
+SELECT "users"."ID" AS "ID", "users"."EMAIL" AS "EMAIL", "users"."USERNAME" AS "USERNAME", "users"."last_name" AS "last_name", "users"."PASSWORD" AS "PASSWORD", "users"."first_name" AS "first_name" FROM "users" WHERE "users"."USERNAME" = ? [42103-232]
+2025-09-17 12:56:52.478271-04:00 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Table "users" not found (candidates are: "USERS"); SQL statement:
+SELECT "users"."ID" AS "ID", "users"."EMAIL" AS "EMAIL", "users"."USERNAME" AS "USERNAME", "users"."last_name" AS "last_name", "users"."PASSWORD" AS "PASSWORD", "users"."first_name" AS "first_name" FROM "users" WHERE "users"."USERNAME" = ? [42103-232]
+2025-09-17 12:57:16.013770-04:00 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Table "users" not found (candidates are: "USERS"); SQL statement:
+SELECT "users"."ID" FROM "users" WHERE "users"."USERNAME" = ? LIMIT 1 [42103-232]
+2025-09-17 12:58:56.589387-04:00 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Table "users" not found (candidates are: "USERS"); SQL statement:
+SELECT "users"."ID" AS "ID", "users"."EMAIL" AS "EMAIL", "users"."USERNAME" AS "USERNAME", "users"."last_name" AS "last_name", "users"."PASSWORD" AS "PASSWORD", "users"."first_name" AS "first_name" FROM "users" WHERE "users"."USERNAME" = ? [42103-232]
+2025-09-17 12:59:17.216796-04:00 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Table "users" not found (candidates are: "USERS"); SQL statement:
+SELECT "users"."ID" FROM "users" WHERE "users"."USERNAME" = ? LIMIT 1 [42103-232]
+2025-09-17 17:32:11.179791-04:00 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Table "users" not found (candidates are: "USERS"); SQL statement:
+SELECT "users"."ID" AS "ID", "users"."EMAIL" AS "EMAIL", "users"."USERNAME" AS "USERNAME", "users"."last_name" AS "last_name", "users"."PASSWORD" AS "PASSWORD", "users"."first_name" AS "first_name" FROM "users" WHERE "users"."USERNAME" = ? [42103-232]

@@ -1,18 +1,33 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
-  <head th:replace="fragments/head :: head('CLC App')"></head>
-  <body>
-    <header th:replace="fragments/navbar :: nav"></header>
-
-    <main class="container py-4">
-      <section th:replace="fragments/alerts :: alerts"></section>
-      <div class="card shadow-sm">
-        <div class="card-body">
-          <div th:insert="~{::content}"></div>
-        </div>
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <!-- NOTE: use double quotes outside so single quotes inside the expression are safe -->
+  <title th:text="${title} ?: 'CLC App'">CLC App</title>
+  <link rel="stylesheet" th:href="@{/css/app.css}"/>
+</head>
+<body>
+  <th:block th:fragment="header">
+    <header>
+      <div class="nav">
+        <a class="mono" th:href="@{/}">CLC</a>
+        <a th:href="@{/products}">Products</a>
+        <a th:href="@{/products/create}">Create Product</a>
+        <span class="spacer"></span>
+        <a th:href="@{/login}">Login</a>
+        <a th:href="@{/register}">Register</a>
       </div>
-    </main>
+    </header>
+  </th:block>
 
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
-  </body>
+  <main>
+  </main>
+
+  <th:block th:fragment="footer">
+    <footer>
+      <div class="nav" style="justify-content:center">&copy; CLC App</div>
+    </footer>
+  </th:block>
+</body>
 </html>
