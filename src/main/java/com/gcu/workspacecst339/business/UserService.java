@@ -1,7 +1,9 @@
 package com.gcu.workspacecst339.business;
 
 import java.util.Optional;
+
 import org.springframework.stereotype.Service;
+
 import com.gcu.workspacecst339.data.UserRepository;
 import com.gcu.workspacecst339.model.User;
 
@@ -16,7 +18,6 @@ public class UserService {
     }
 
     public User register(String username, String password, String firstName, String lastName, String email) {
-        // TODO: hash password before saving for production
         User u = new User(null, username, password, firstName, lastName, email);
         return users.save(u);
     }

@@ -1,11 +1,18 @@
-target/
-bin/
-out/
-.classpath
-.project
+﻿target/
 .settings/
-.vscode/
+.project
+.classpath
 .idea/
 *.iml
 *.log
+*.tmp
+*.bak
 .DS_Store
+data/
+bin/
+build/
+out/
+# wrapper + keep scripts
+!.mvn/
+!mvnw
+!mvnw.cmd

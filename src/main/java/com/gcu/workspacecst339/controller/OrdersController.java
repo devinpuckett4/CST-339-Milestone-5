@@ -9,7 +9,6 @@ public class OrdersController {
 
     @GetMapping("/orders")
     public String list(Model model) {
-        // TODO: when you have a service: model.addAttribute("orders", orderService.listNewestFirst());
         return "orders";
     }
 }

@@ -1,0 +1,29 @@
+﻿<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head><title>Products</title></head>
+<body>
+<h1>Products</h1>
+
+<div th:if="${msg}" th:text="${msg}"></div>
+
+<table border="1" cellpadding="6">
+  <thead>
+    <tr><th>Name</th><th>Price</th><th>Qty</th><th>Actions</th></tr>
+  </thead>
+  <tbody>
+    <tr th:each="p : ${products}">
+      <td th:text="${p.name}">Name</td>
+      <td th:text="${p.price}">0.00</td>
+      <td th:text="${p.quantity}">0</td>
+      <td>
+        <a th:href="@{|/products/${p.id}/edit|}">Edit</a>
+        <form th:action="@{|/products/${p.id}/delete|}" method="post" style="display:inline">
+          <button type="submit">Delete</button>
+        </form>
+      </td>
+    </tr>
+  </tbody>
+</table>
+
+</body>
+</html>
