@@ -36,7 +36,8 @@ This screenshot shows the deletion of a product. Here, I click the Delete button
 ![Build success](h2console.png)
 
 This is the H2 console that comes with Spring Boot. I open it at the h2-console path and connect using the in memory url and the user sa. Seeing this page means the app started and the database is reachable. I use it for quick checks while developing. Here I ran a select from the products table. It shows thselection that are currently in the database along with the created time. This matches what I see on the products page, so I know my schema and data are correct. It also proves edits and deletes are really happening in the database.
-
+---
 
 ## - Conclusion
 In this Milestone, we got the Product Display, Edit/Update, and Delete features working end-to-end. I added simple MVC pages plus controllers, and wired them to a ProductService that does basic checks like name required, price and quantity not negative, and sets createdAt. The data layer uses Spring Data JDBC with an H2 database; schema.sql builds the table and data.sql seeds it, and I verified changes in the H2 console with SELECT * FROM products. I fixed the whitelabel issues by matching template names to controller return values and adding a HomeController to redirect “/” to “/products.” Delete is a POST form, and both edit and delete redirect back to the list so you can see the result right away.
+---
